@@ -1,45 +1,51 @@
-//your JS code here. If required.
-const form = document.getElementById("userForm");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("userform");
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // prevent default form submission
+    form.addEventListener("submit", handleSubmit);
+});
 
-      const age = document.getElementById("age").value.trim();
-      const name = document.getElementById("name").value.trim();
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
 
-      // 1️⃣ Validation
-      if (age === "" || name === "") {
+    const age = document.getElementById("age").value.trim();
+    const name = document.getElementById("name").value.trim();
+
+    // Validate inputs
+    if (!validateInputs(age, name)) return;
+
+    // Process the promise
+    processAgePromise(age, name);
+}
+
+function validateInputs(age, name) {
+    if (age === "" || name === "") {
         alert("Please enter valid details.");
-        return;
-      }
+        return false;
+    }
+    return true;
+}
 
-      // 2️⃣ Promise with chaining
-      new Promise((resolve, reject) => {
+function processAgePromise(age, name) {
+    new Promise((resolve, reject) => {
         setTimeout(() => {
-          if (parseInt(age) > 18) {
-            resolve(`Welcome, ${name}. You can vote.`);
-          } else {
-            reject(`Oh sorry ${name}. You aren't old enough.`);
-          }
+            if (parseInt(age) > 18) {
+                resolve(`Welcome, ${name}. You can vote.`);
+            } else {
+                reject(`Oh sorry ${name}. You aren't old enough.`);
+            }
         }, 4000); // 4-second delay
-      })
-      .then((message) => {
-        // First .then handles success
-        alert(message);
-        return "Validation complete. Proceeding...";
-      })
-      .then((nextStep) => {
-        // Second .then continues the chain
-        console.log(nextStep);
-        alert("Thank you for using our service.");
-      })
-      .catch((error) => {
-        // Handles rejection
-        alert(error);
-      })
-      .finally(() => {
-        // Always runs
-        console.log("Form submission attempt finished.");
-      });
-    });
+    })
+    .then(showSuccessMessage)
+    .catch(showErrorMessage)
+    .finally(() => console.log("Form submission attempt finished."));
+}
 
+function showSuccessMessage(message) {
+    alert(message);
+    console.log("Validation complete. Proceeding...");
+    alert("Thank you for using our service.");
+}
+
+function showErrorMessage(error) {
+    alert(error);
+}

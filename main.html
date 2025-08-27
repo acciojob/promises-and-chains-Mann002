@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" />
-  </head>
-
-  <body>
-    <!-- write the body here -->
-	  <form id ="userForm">
-		  <label for="age">Age:</label>
-		  <input id="age" type="number" name="age" placeholder="Enter your age"><br>
-		  <label for="name">Name:</label>
-		  <input id ="name" type="text" name="name" placeholder="Enter your name">
-		  <button id="btn" type="submit">Submit</button>
-		  
-	  </form>
-
+    <title>Age Validation Form</title>
+</head>
+<body>
+    <form id="userform">
+        <label for="age">Age:</label>
+        <input id="age" type="number" name="age" placeholder="Enter your age" required><br>
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name" placeholder="Enter your name" required>
+        <button id="btn" type="submit">Submit</button>
+    </form>
     <script type="text/javascript" src="./script.js"></script>
-  </body>
+</body>
 </html>
