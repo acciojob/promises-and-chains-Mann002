@@ -28,7 +28,7 @@ function validateInputs(age, name) {
 function processAgePromise(age, name) {
     new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (parseInt(age) > 18) {
+            if (parseInt(age) >= 18) { // Change to >= 18
                 resolve(`Welcome, ${name}. You can vote.`);
             } else {
                 reject(`Oh sorry ${name}. You aren't old enough.`);
